@@ -1,35 +1,33 @@
-import { StyleSheet, Text, View, Button } from "react-native"
+import { StyleSheet, Text, View, Button, TextInput } from "react-native"
 
 export default function App() {
-  function alertHi() {
-    alert("hellooo")
-  }
-
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.first}>hi!</Text>
+    <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput placeholder="Your course goal" style={styles.textInput} />
+        <Button title="Add Goal" />
       </View>
-      <Text style={styles.first}>hi again</Text>
-      <Button title="Tap me!" onPress={alertHi} style={styles.button} />
+      <View>
+        <Text>List of Goals</Text>
+      </View>
     </View>
   )
 }
 
 // best to do it this way - RNs Stylesheet object provides validations + errors
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  appContainer: {
+    padding: 50,
   },
-  first: {
-    backgroundColor: "pink",
-    borderWidth: 4,
-    borderColor: "blue",
-    padding: 20,
-    borderRadius: 6,
-    margin: 5,
+  inputContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // backgroundColor: "lightblue",
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "black",
+    width: "80%",
   },
 })
