@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native"
 import { TouchableWithoutFeedback } from "react-native-web"
 
@@ -20,7 +21,7 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      { text: enteredGoalText, key: Math.random().toString() },
     ])
   }
 
@@ -39,16 +40,23 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {/* <Text>List of Goals</Text> */}
-          {courseGoals.map((goal) => (
-            <View style={styles.goalItem} key={goal}>
-              <Text onPress={deleteItem} style={styles.goalText}>
-                {goal}
-              </Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return (
+              <View style={styles.goalItem}>
+                <Text onPress={deleteItem} style={styles.goalText}>
+                  {itemData.item.text}
+                </Text>
+              </View>
+            )
+          }}
+          keyExtractor={(item, index) => {
+            return item.key
+          }}
+          alwaysBounceVertical={false}
+        />
+        {/* <Text>List of Goals</Text> */}
       </View>
     </View>
   )
