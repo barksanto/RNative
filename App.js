@@ -1,5 +1,13 @@
 import { useState } from "react"
-import { StyleSheet, Text, View, Button, TextInput } from "react-native"
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native"
+import { TouchableWithoutFeedback } from "react-native-web"
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("")
@@ -15,7 +23,10 @@ export default function App() {
       enteredGoalText,
     ])
   }
-  // console.log(courseGoals)
+
+  function deleteItem() {
+    console.log("trynna delete")
+  }
 
   return (
     <View style={styles.appContainer}>
@@ -28,10 +39,16 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        {/* <Text>List of Goals</Text> */}
-        {courseGoals.map((goal) => (
-          <Text key={goal}>{goal}</Text>
-        ))}
+        <ScrollView>
+          {/* <Text>List of Goals</Text> */}
+          {courseGoals.map((goal) => (
+            <View style={styles.goalItem} key={goal}>
+              <Text onPress={deleteItem} style={styles.goalText}>
+                {goal}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   )
@@ -63,5 +80,16 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 4,
+  },
+  goalItem: {
+    backgroundColor: "#5e0acc",
+    marginBottom: 4,
+    padding: 8,
+    borderRadius: 6,
+    borderColor: "blue",
+    borderWidth: 1,
+  },
+  goalText: {
+    color: "white",
   },
 })
