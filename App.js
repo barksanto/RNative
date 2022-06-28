@@ -15,7 +15,7 @@ export default function App() {
       enteredGoalText,
     ])
   }
-  console.log(courseGoals)
+  // console.log(courseGoals)
 
   return (
     <View style={styles.appContainer}>
@@ -28,7 +28,10 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text>List of Goals</Text>
+        {/* <Text>List of Goals</Text> */}
+        {courseGoals.map((goal) => (
+          <Text key={goal}>{goal}</Text>
+        ))}
       </View>
     </View>
   )
