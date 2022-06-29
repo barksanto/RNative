@@ -1,14 +1,7 @@
 import { useState } from "react"
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
-} from "react-native"
-import { TouchableWithoutFeedback } from "react-native-web"
+import { StyleSheet, View, Button, TextInput, FlatList } from "react-native"
+
+import GoalItem from "./components/GoalItem"
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("")
@@ -25,10 +18,6 @@ export default function App() {
     ])
   }
 
-  function deleteItem() {
-    console.log("trynna delete")
-  }
-
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
@@ -43,20 +32,13 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItem}>
-                <Text onPress={deleteItem} style={styles.goalText}>
-                  {itemData.item.text}
-                </Text>
-              </View>
-            )
+            return <GoalItem text={itemData.item.text} />
           }}
           keyExtractor={(item, index) => {
             return item.key
           }}
           alwaysBounceVertical={false}
         />
-        {/* <Text>List of Goals</Text> */}
       </View>
     </View>
   )
@@ -88,16 +70,5 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 4,
-  },
-  goalItem: {
-    backgroundColor: "#5e0acc",
-    marginBottom: 4,
-    padding: 8,
-    borderRadius: 6,
-    borderColor: "blue",
-    borderWidth: 1,
-  },
-  goalText: {
-    color: "white",
   },
 })
