@@ -14,6 +14,7 @@ export default function App() {
     ])
   }
 
+  //find goal by id and filter it out
   function deleteGoalHandler(id) {
     setCourseGoals((oldGoals) => {
       return oldGoals.filter((goal) => goal.key !== id)
