@@ -14,11 +14,14 @@ function GoalInput(props) {
     setEnteredGoalText("") // input text state
   }
 
+  console.log(enteredGoalText)
+
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <Image
           source={require("../assets/images/goal.png")}
+          // source="/somepath"
           style={styles.image}
         />
         <TextInput
